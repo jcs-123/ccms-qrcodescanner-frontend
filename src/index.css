@@ -1,34 +1,32 @@
 .sidebar {
   width: 220px;
   min-height: 100vh;
-  background-color: #000000de; /* Full black background */
-  color: #00ffff; /* Cyan text color */
+  background-color: #000000de;
+  color: #00ffff;
   transition: width 0.4s ease;
   overflow: hidden;
   box-shadow: 3px 0 12px rgba(0, 255, 255, 0.3);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-right: 2px solid #00ffff22;
+  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
+/* Collapsed state: only icons */
 .sidebar.collapsed {
   width: 60px;
 }
 
 .sidebar .toggle-btn {
-  padding: 15px;
+  padding: 12px;
   cursor: pointer;
   text-align: center;
   font-size: 1.4rem;
   border-bottom: 1px solid #222;
-  color: #00ffff; /* Cyan toggle button */
-  transition: background 0.3s, color 0.3s;
-  user-select: none;
-}
-
-.sidebar .toggle-btn:hover {
-  background-color: #111;
   color: #00ffff;
-  text-shadow: 0 0 8px #00ffff;
 }
 
 .sidebar ul {
@@ -36,70 +34,112 @@
   padding-left: 0;
   margin: 0;
 }
+.sidebar {
+  width: 60px !important;   /* force collapsed width */
+  overflow-x: hidden;       /* hide horizontal overflow */
+}
+
+.sidebar ul li a.sidebar-link span {
+  display: none !important; /* hide text */
+}
 
 .sidebar ul li {
-  padding: 12px 20px;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 8px;
+  padding: 12px !important;
+  justify-content: center !important;
+}
+
+.sidebar ul li a.sidebar-link {
+  justify-content: center !important;
+}
+
+/* Hide toggle button if exists */
+.sidebar .toggle-btn {
+  display: none !important;
+}
+
+.sidebar ul li {
+  margin: 6px 8px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
 .sidebar ul li:hover {
   background: linear-gradient(90deg, #00ffff55, #00bcd455);
-  box-shadow: 0 0 10px #00ffffaa;
-  cursor: pointer;
+  box-shadow: 0 0 8px #00ffffaa;
 }
 
 .sidebar ul li a.sidebar-link {
   display: flex;
   align-items: center;
-  color: #00ffff !important; /* Cyan text */
   text-decoration: none;
+  color: #00ffff;
   font-size: 1.1rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.sidebar ul li a.sidebar-link:hover {
-  color: #a0ffff; /* lighter cyan on hover */
-  text-shadow: 0 0 8px #00ffff;
 }
 
 .sidebar ul li a.sidebar-link svg {
-  flex-shrink: 0;
-  font-size: 1.4rem;
-  color: #00ffff;
-  transition: color 0.3s ease;
+  font-size: 1.3rem;
 }
 
-.sidebar ul li a.sidebar-link:hover svg {
-  color: #a0ffff;
-}
-
-.sidebar ul li a.sidebar-link span {
-  margin-left: 12px;
-  display: inline-block;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  white-space: nowrap;
-}
-
+/* Hide text when collapsed */
 .sidebar.collapsed ul li a.sidebar-link span {
-  opacity: 0;
-  transform: translateX(-20px);
-  pointer-events: none;
+  display: none;
 }
 
+.sidebar.collapsed ul li {
+  padding: 12px;
+  justify-content: center;
+}
+
+.sidebar.collapsed ul li a.sidebar-link {
+  justify-content: center;
+}
+
+/* Toggle icon rotation (optional) */
 .sidebar .toggle-btn svg {
-  transition: transform 0.4s ease;
-  color: #00ffff;
+  transition: transform 0.3s ease;
 }
 
 .sidebar.collapsed .toggle-btn svg {
   transform: rotate(180deg);
 }
 
-/* Scrollbar hidden */
-.sidebar nav ul::-webkit-scrollbar {
-  display: none;
+/* Mobile view */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(0);
+  }
+
+  .mobile-toggle-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 1.6rem;
+    background: #000;
+    color: #00ffff;
+    padding: 10px;
+    z-index: 1100;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #00ffff99;
+    cursor: pointer;
+  }
 }
+@media (max-width: 768px) {
+  .sidebar ul li {
+    margin-top: 20px; /* Adds spacing between icons */
+  }
+
+  /* Optional: add extra spacing on first item only */
+  .sidebar ul li:first-child {
+    margin-top: 70px; /* Pushes the first icon down from the top */
+  }
+}
+
 
 /* header css */
 .animated-navbar {
@@ -165,3 +205,14 @@
 .animate-zoomIn {
   animation: zoomIn 0.4s ease forwards;
 }
+@media screen and (max-width: 768px) {
+  .qr-scanner-container {
+    height: auto !important;
+    aspect-ratio: 4/3;
+  }
+
+  table {
+    font-size: 14px;
+  }
+}
+/* table */

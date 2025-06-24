@@ -6,7 +6,7 @@ function Header() {
     <Navbar className="animated-navbar" expand="lg" variant="dark">
       <Container>
         <Navbar.Brand href="/" style={{marginLeft:"120px"}} className="navbar-brand-animated ">
-          CCMS SCANNER
+          PROCCMS SCANNER
         </Navbar.Brand>
       </Container>
     </Navbar>
